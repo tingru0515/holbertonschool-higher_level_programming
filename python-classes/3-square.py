@@ -12,6 +12,8 @@ Usage:
     # Example usage
     square = Square()
 """
+
+
 class Square:
      """Represents a square shape.
 

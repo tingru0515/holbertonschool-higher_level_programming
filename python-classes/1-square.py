@@ -13,6 +13,7 @@ Usage:
     square = Square()
 """
 
+
 class Square:
     """Represents a square shape.
 
