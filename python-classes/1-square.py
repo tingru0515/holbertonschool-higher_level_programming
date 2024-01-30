@@ -1,6 +1,19 @@
 #!/usr/bin/python3
 class Square:
-    """Class that defines a square with a private size attribute."""
+    """Represents a square shape.
+
+    Attributes:
+        None
+
+    Methods:
+        None
+
+    Usage:
+        from square import Square
+
+        # Create a square object
+        square = Square()
+    """
+
     def __init__(self, size):
-        """Initialization method with size attribute."""
         self.__size = size

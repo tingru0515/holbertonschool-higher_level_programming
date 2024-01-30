@@ -1,5 +1,32 @@
 #!/usr/bin/python3
+"""Module: 0-square.py
+
+This module provides a simple implementation of a Square class.
+
+Classes:
+    Square: Represents a square shape.
+
+Usage:
+    Square = __import__('0-square').Square
+
+    # Example usage
+    square = Square()
+"""
+
+
 class Square:
-    """Empty class Square that defines a square."""
-    #print(__import__("0-square").MyClass.__doc__)
+    """Represents a square shape.
+
+        Attributes:
+            None
+
+        Methods:
+            None
+
+        Usage:
+            from square import Square
+
+            # Create a square object
+            square = Square()
+        """
     pass
