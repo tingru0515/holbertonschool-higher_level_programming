@@ -5,8 +5,7 @@ def list_division(my_list_1, my_list_2, list_length):
         try:
             element_1 = my_list_1[i]
             element_2 = my_list_2[i]
-            if type(element_1) not in (int, float) or
-            type(element_2) not in (int, float):
+            if type(element_1) not in (int, float) or type(element_2) not in (int, float):
                 print("wrong type")
                 result = 0
             else:
