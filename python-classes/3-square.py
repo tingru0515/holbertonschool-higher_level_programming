@@ -1,17 +1,34 @@
 #!/usr/bin/python3
+"""Module: 0-square.py
+
+This module provides a simple implementation of a Square class.
+
+Classes:
+    Square: Represents a square shape.
+
+Usage:
+    Square = __import__('0-square').Square
+
+    # Example usage
+    square = Square()
+"""
 class Square:
-    """Class that defines a square with a private size attribute."""
+     """Represents a square shape.
 
+    Attributes:
+        None
+
+    Methods:
+        None
+
+    Usage:
+        from square import Square
+
+        # Create a square object
+        square = Square()
+    """
     def __init__(self, size=0):
-        """Initialization method with optional size attribute.
 
-        Args:
-            size (int): The size of the square.
-
-        Raises:
-            TypeError: If size is not an integer.
-            ValueError: If size is less than 0.
-        """
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
         elif size < 0:
@@ -20,5 +37,4 @@ class Square:
             self.__size = size
 
     def area(self):
-        """Calculate and return the area of the square."""
         return self.__size ** 2
