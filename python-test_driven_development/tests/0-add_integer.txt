@@ -3,12 +3,15 @@ Add two integers together.
 
 This function takes two integers as input and returns their sum.
 
+First import ``add_integer'' from the ``0-add_integer`` file:
+    >>> add_integer = __import__('0-add_integer').add_integer
+
 Parameters:
     a (int): The first integer to be added.
-    b (int): The second integer to be added,default value as 98
+    b (int, optional): The second integer to be added. Defaults to 98.
 
 Returns:
-    The sum of the two input integers.
+    int: The sum of the two input integers.
 
 Raises:
     ValueError: If either `a` or `b` is not an integer.
@@ -23,14 +26,16 @@ Examples:
     0
 
     test - only a
-    >>> add_integer(2)
-    100
+    >>> add_integer(0)
+    98
 
     test - a is float
     >>> add_integer(1.5, 200)
     201
 
-    
+    test - b is float
+    >>> add_integer(1, 200.6)
+    201
 
 Error case:
     test - no args
