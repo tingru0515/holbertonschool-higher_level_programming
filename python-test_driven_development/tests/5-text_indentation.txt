@@ -1,39 +1,71 @@
 """
-    Prints a text with 2 new lines after each of these characters: ., ? and :.
+Print a given text into
+paragraphs based on the presence of '.', '?', or ':' characters.
 
-    Parameters:
-      text (str): The input text.
+First import ``text_indentation`` from the ``5-text_indentation`` file:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
 
-    Raises:
-      TypeError: If text is not a string.
+Parameters:
+    text (str): The input text to be processed.
+    
 
-    Example:
-    >>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: Plus semper voluptatis? Teneo, inquit, finem illi videri nihil dolere. Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres")
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.$
-    $
-    Quonam modo?$
-    $
-    Utrum igitur tibi litteram videor an totas paginas commovere?$
-    $
-    Non autem hoc:$
-    $
-    igitur ne illud quidem.$
-    $
-    Fortasse id optimum, sed ubi illud:$
-    $
-    Plus semper voluptatis?$
-    $
-    Teneo, inquit, finem illi videri nihil dolere.$
-    $
-    Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens.$
-    $
-    Si id dicis, vicimus.$
-    $
-    Inde sermone vario sex illa a Dipylo stadia confecimus.$
-    $
-    Sin aliud quid voles, postea.$
-    $
-    Quae animi affectio suum cuique tribuens atque hanc, quam dico.$
-    $
-    Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres
-    """
+Returns:
+    None
+
+Raises:
+    TypeError: If the input 'text' is not a string.
+
+Examples:
+    test - text with :
+    >>> text_indentation("abcd: efg")
+    abcd:
+    <BLANKLINE>
+    efg
+
+    test - text with .
+    >>> text_indentation("abcd. efg")
+    abcd.
+    <BLANKLINE>
+    efg
+
+    test - text with ?
+    >>> text_indentation("abcd? efg")
+    abcd?
+    <BLANKLINE>
+    efg
+
+    test - Leading whitespace
+    >>> text_indentation("   abcd? efg")
+    abcd?
+    <BLANKLINE>
+    efg
+
+    test - trailing whitespace
+    >>> text_indentation("abcd? efg        ")
+    abcd?
+    <BLANKLINE>
+    efg
+
+    test - empty text
+    >>> text_indentation("")
+
+    test - only space
+    >>> text_indentation("          ")
+    
+
+Error case:
+    test - test is not str
+
+    >>> text_indentation(100)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+    test - No arg
+
+    >>> text_indentation()
+    Traceback (most recent call last):
+    ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+"""
