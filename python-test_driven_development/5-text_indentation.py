@@ -3,6 +3,8 @@
 write a function that prints a text with 2 new lines
 after each of the characters: '.', '?' and ':'
 """
+
+
 def text_indentation(text):
     """
     Prints a text with 2 new lines after each of these characters: ., ? and :.
@@ -37,4 +39,3 @@ def text_indentation(text):
             print(text[start_index: i + 1].strip(), end="\n\n")
             start_index = i + 1
     print(text[start_index: len(text)].strip(), end="")
-    
