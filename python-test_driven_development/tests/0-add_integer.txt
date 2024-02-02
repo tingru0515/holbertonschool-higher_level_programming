@@ -48,12 +48,12 @@ Error case:
     >>> add_integer("mochi", 3)
     Traceback (most recent call last):
     ...
-    ValueError: a must be an integer
+    TypeError: a must be an integer
 
     test - b is not int or float
     >>> add_integer(2, None)
     Traceback (most recent call last):
     ...
-    ValueError: b must be an integer
+    TypeError: b must be an integer
 
 """
