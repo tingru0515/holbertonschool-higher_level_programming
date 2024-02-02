@@ -1,0 +1,54 @@
+"""
+Add two integers together.
+
+This function takes two integers as input and returns their sum.
+
+Parameters:
+    a (int): The first integer to be added.
+    b (int): The second integer to be added,default value as 98
+
+Returns:
+    The sum of the two input integers.
+
+Raises:
+    ValueError: If either `a` or `b` is not an integer.
+
+Examples:
+    test - a and b are int
+    >>> add_integer(2, 3)
+    5
+
+    test - a is minus int and b is int
+    >>> add_integer(-1, 1)
+    0
+
+    test - only a
+    >>> add_integer(2)
+    100
+
+    test - a is float
+    >>> add_integer(1.5, 200)
+    201
+
+    
+
+Error case:
+    test - no args
+    >>> add_integer()
+    Traceback (most recent call last):
+    ...
+    TypeError: add_integer() missing 1 required positional argument: 'a'
+
+    test - a is not int or float
+    >>> add_integer("mochi", 3)
+    Traceback (most recent call last):
+    ...
+    ValueError: a must be an integer
+
+    test - b is not int or float
+    >>> add_integer(2, None)
+    Traceback (most recent call last):
+    ...
+    ValueError: b must be an integer
+
+"""

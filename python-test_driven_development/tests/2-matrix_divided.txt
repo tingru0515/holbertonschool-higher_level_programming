@@ -1,0 +1,25 @@
+"""
+Divide all elements of a matrix by a divisor and return the result.
+
+First import ``matrix_divided'' from the ``2-matrix_divided`` file:
+    >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+Parameters:
+    matrix (list of lists): The matrix to be divided.
+    div (int or float): The divisor.
+
+Returns:
+    list of lists: The resulting matrix after division.
+
+Raises:
+    TypeError: If `div` is not a number or if `matrix` is not a list of lists of integers/floats.
+    ZeroDivisionError: If `div` is zero.
+    TypeError: If any row of `matrix` does not have the same size.
+    
+
+Example:
+>>> matrix = [[1, 2, 3], [4, 5, 6]]
+>>> matrix_divided(matrix, 3)
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+>>> matrix  # Original matrix remains unchanged
+[[1, 2, 3], [4, 5, 6]]
