@@ -1,0 +1,95 @@
+"""
+ integer_validator method test in BaseGeometry class. 
+
+First import ``BaseGeometry`` from the ``7-base_geometry`` file:
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+    >>> instance = __import__('7-base_geometry').BaseGeometry()
+
+Parameters:
+    integer_validator (name: str, value: int): assume that name is always str.
+
+Returns:
+    None
+
+Examples:
+    test - proper args
+    >>> instance.integer_validator("name", 900)
+
+    test - proper args
+    >>> instance.integer_validator("name", 900)
+
+
+Errro_case:
+    test - value is not int
+    >>> instance.integer_validator("name", "900")
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+
+    test - value is less than or equal to 0
+    >>> instance.integer_validator("name", -190)
+    Traceback (most recent call last):
+    ...
+    ValueError: name must be greater than 0
+
+    test - value is 0
+    >>> instance.integer_validator("name", 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: name must be greater than 0
+
+    test - value is tuple
+    >>> instance.integer_validator("name", (90,))
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+
+    test - value is tuple with multiple values
+    >>> instance.integer_validator("name", (90, 80))
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+
+    test - value is boolean
+    >>> instance.integer_validator("name", True)
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+
+    test - value is None
+    >>> instance.integer_validator("name", None)
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+
+    test - value is set
+    >>> instance.integer_validator("name", {3, 4})
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+
+    test - value is list
+    >>> instance.integer_validator("name", [90])
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+
+    test - area raise error
+    >>> instance.area()
+    Traceback (most recent call last):
+    ...
+    Exception: area() is not implemented
+
+    test - no arg
+    >>> instance.integer_validator()
+    Traceback (most recent call last):
+    ...
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+    test - one arg
+    >>> instance.integer_validator("name")
+    Traceback (most recent call last):
+    ...
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+"""
