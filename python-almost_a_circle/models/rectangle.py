@@ -1,283 +1,158 @@
 #!/usr/bin/python3
-
-""" This module proivides Rectangle class inherited from Base class.
 """
-
-from .base import Base
+Module - rectangle.py
+"""
+from models.base import Base
 
 
 class Rectangle(Base):
     """
-    This class inherits Base class, and create
-    an instance representing rectangle.
-
-    Constructor(self, width: int, height: int, x: int = 0,
-    y: int = 0, id: int = None) -> None):
-        create an instance representing rectangle.
-
-    Methods:
-        - width: this is property to return and set __width attribute.
-        - height: this is property to return and set __height attribute.
-        - x: this is property to return and set __x attribute.
-        - y: this is property to return and set __y attribute.
-        - area(self) -> int: calculate width and height and return the area.
-        - display(self) -> None: print rectangle with #.
+    Class Rectangle inherits from Base
     """
-    ATTR_NAMES = {
-        "ID": "id",
-        "WIDTH": "width",
-        "HEIGHT": "height",
-        "X": 'x',
-        "Y": 'y'
-    }
-
-    def __init__(self, width: int, height: int, x: int = 0,
-                 y: int = 0, id: int = None) -> None:
+    def __init__(self, width, height, x=0, y=0, id=None):
         """
-        Initializes an instance representing a rectangle.
-
-        Parameters:
-        - width (int): Width of the rectangle.
-        - height (int): Height of the rectangle.
-        - x (int): X-coordinate of the rectangle (default is 0).
-        - y (int): Y-coordinate of the rectangle (default is 0).
-        - id (int): Identifier for the rectangle (default is None).
-
-        Returns:
-        None
+        class Rectangle constructor
         """
-        self.validator(**{"width": width, "height": height, 'x': x, 'y': y})
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
         super().__init__(id)
-
-    def validator(self, **kwargs: dict) -> None:
-        """
-        Validates input values for specific attributes.
-
-        Parameters:
-        - **kwargs (dict): Keyword arguments representing
-        attribute names and their values.
-
-        Raises:
-        - TypeError: If the value is not an integer for
-        the specified attribute.
-        - ValueError: If the value is less than or equal
-        to 0 for 'width' or 'height',
-        or less than 0 for 'x' or 'y'.
-
-        Returns:
-        None
-        """
-        for key, val in kwargs.items():
-            if type(val) is not int:
-                raise TypeError(
-                    "{} must be an integer".format(key))
-            if key in ("width", "height") and val <= 0:
-                raise ValueError("{} must be > 0".format(key))
-            if key in ('x', 'y') and val < 0:
-                raise ValueError("{} must be >= 0".format(key))
-
-    def __str__(self) -> str:
-        """
-        Returns a string representation of the rectangle.
-
-        Returns:
-        str: String representation of the rectangle.
-        """
-
-        return "[{}] ({}) {}/{} - {}/{}".format(
-            __class__.__name__, self.id, self.__x,
-            self.__y, self.__width, self.__height)
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
     @property
     def width(self):
         """
-        Getter method for the width attribute.
-
-        Returns:
-        int: Width of the rectangle.
+        Retrieves itself
         """
-
         return self.__width
 
     @width.setter
-    def width(self, value: int) -> None:
+    def width(self, value):
         """
-        Setter method for the width attribute.
-
-        Parameters:
-        - value (int): New value for the width attribute.
-
-        Returns:
-        None
+        Determines whether the value is suitable for width
         """
-
-        self.validator(**{"width": value})
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        if value <= 0:
+            raise ValueError("width must be > 0")
         self.__width = value
 
     @property
     def height(self):
         """
-        Getter method for the height attribute.
-
-        Returns:
-        int: Height of the rectangle.
+        Retrieves itself
         """
-
         return self.__height
 
     @height.setter
-    def height(self, value: int) -> None:
+    def height(self, value):
         """
-        Setter method for the height attribute.
-
-        Parameters:
-        - value (int): New value for the height attribute.
-
-        Returns:
-        None
+        Determines whether the value is suitable for height
         """
-
-        self.validator(**{"height": value})
+        if type(value) is not int:
+            raise TypeError("height must be an integer")
+        if value <= 0:
+            raise ValueError("height must be > 0")
         self.__height = value
 
     @property
     def x(self):
         """
-        Getter method for the x attribute.
-
-        Returns:
-        int: X-coordinate of the rectangle.
+        Retrieves itself
         """
-
         return self.__x
 
     @x.setter
-    def x(self, value: int) -> None:
+    def x(self, value):
         """
-        Setter method for the x attribute.
-
-        Parameters:
-        - value (int): New value for the x attribute.
-
-        Returns:
-        None
+        Determines whether the value is suitable for x
         """
-
-        self.validator(**{'x': value})
+        if type(value) is not int:
+            raise TypeError("x must be an integer")
+        if value < 0:
+            raise ValueError("x must be >= 0")
         self.__x = value
 
     @property
     def y(self):
         """
-        Getter method for the y attribute.
-
-        Returns:
-        int: Y-coordinate of the rectangle.
+        Retrieves itself
         """
-
         return self.__y
 
     @y.setter
-    def y(self, value: int) -> None:
+    def y(self, value):
         """
-        Setter method for the y attribute.
-
-        Parameters:
-        - value (int): New value for the y attribute.
-
-        Returns:
-        None
+        Determines whether the value is suitable for y
         """
-
-        self.validator(**{'y': value})
+        if type(value) is not int:
+            raise TypeError("y must be an integer")
+        if value < 0:
+            raise ValueError("y must be >= 0")
         self.__y = value
 
-    def area(self) -> int:
+    def area(self):
         """
-        Calculates and returns the area of the rectangle.
-
-        Returns:
-        int: Area of the rectangle.
+        Returns the area of the rectangle
         """
-
         return self.__height * self.__width
 
-    def display(self) -> None:
+    def display(self):
         """
-        Prints a representation of the rectangle using '#'.
-
-        Returns:
-        None
+        Prints the rectangle with #
         """
-
-        for _ in range(self.__y):
+        for i in range(self.y):
             print()
-        x = ' ' * self.__x
-        for _ in range(self.__height):
-            print(x, end='')
-            for _ in range(self.__width):
+        for i in range(self.height):
+            for i in range(self.x):
+                print(' ', end='')
+            for i in range(self.width):
                 print('#', end='')
             print()
 
-    def update(self, *args, **kwargs) -> None:
+    def __str__(self):
         """
-        Updates attributes of the rectangle based
-        on positional and keyword arguments.
+        Returns a string representation of the rectangle
+        object that can be used to create a normal rectangle
+        """
+        return ("[Rectangle] ({}) {}/{} - {}/{}".
+                format(self.id, self.x, self.y, self.width, self.height))
 
-        Parameters:
-        - *args: Positional arguments representing ID, width, height, x, and y.
-        - **kwargs: Keyword arguments representing attributes to be updated.
-
-        Returns:
-        None
+    def update(self, *args, **kwargs):
+        """
+        Assign a key/value arguments to attributes
         """
 
-        ATTR_NAMES = {
-            "ID": "id",
-            "WIDTH": "width",
-            "HEIGHT": "height",
-            "X": 'x',
-            "Y": 'y'
-        }
-        if len(args):
-            for i in range(len(args)):
-                if i == 0:
-                    self.id = args[i]
-                elif i == 1:
-                    self.width = args[i]
-                elif i == 2:
-                    self.height = args[i]
-                elif i == 3:
-                    self.x = args[i]
-                elif i == 4:
-                    self.y = args[i]
+        for i, value in enumerate(args):
+            if i == 0:
+                self.id = value
+            elif i == 1:
+                self.width = value
+            elif i == 2:
+                self.height = value
+            elif i == 3:
+                self.x = value
+            else:
+                self.y = value
 
-        if len(kwargs.keys()):
-            for key, val in kwargs.items():
-                if key == ATTR_NAMES["ID"]:
-                    self.id = val
-                elif key == ATTR_NAMES["X"]:
-                    self.x = val
-                elif key == ATTR_NAMES["Y"]:
-                    self.y = val
-                elif key == ATTR_NAMES["WIDTH"]:
-                    self.width = val
-                elif key == ATTR_NAMES["HEIGHT"]:
-                    self.height = val
+        for key, value in kwargs.items():
+            # print (kwargs)
+            # key in dictionary is a string
+            if key == 'id':
+                self.id = value
+            if key == 'width':
+                self.width = value
+            if key == 'height':
+                self.height = value
+            if key == 'x':
+                self.x = value
+            if key == 'y':
+                self.y = value
 
     def to_dictionary(self):
         """
-        Returns a dictionary representation of the rectangle.
-
-        Returns:
-        dict: Dictionary representation of the rectangle.
+        Returns a dictionary representation of a Rectangle
         """
-
-        temp_dict = {}
-        for i in Rectangle.ATTR_NAMES.values():
-            temp_dict[i] = getattr(self, i)
-        return temp_dict
+        # make dictionary from instances
+        return {'id': self.id, 'x': self.x, 'y': self.y,
+                'height': self.height, 'width': self.width}

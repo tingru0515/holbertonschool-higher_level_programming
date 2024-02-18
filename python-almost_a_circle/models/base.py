@@ -1,180 +1,87 @@
 #!/usr/bin/python3
-
-""" This module provides Base class
 """
-
+Module - base.py
+"""
 import json
-import turtle
 
 
-class Base:
+class Base():
     """
-    This class representing base class
+    class Base for Almost a Circle project
     """
     __nb_objects = 0
 
-    def __init__(self, id: int = None) -> None:
+    def __init__(self, id=None):
         """
-        Initializes an instance of the Base class.
-
-        Parameters:
-        - id (int): The identifier for the instance. If not
-        provided, it is auto-generated.
-
-        Returns:
-        None
+        class Base constructor
         """
-        if id:
+        if id is not None:
             self.id = id
         else:
-            Base.__nb_objects += 1
+            Base.__nb_objects = Base.__nb_objects + 1
             self.id = Base.__nb_objects
 
     @staticmethod
-    def to_json_string(list_dictionaries) -> str:
+    def to_json_string(list_dictionaries):
         """
-        Converts a list of dictionaries to a JSON-formatted string.
-
-        Parameters:
-        - list_dictionaries (list): List of dictionaries to be converted.
-
-        Returns:
-        str: JSON-formatted string representing
-        the list of dictionaries.
+        Returns a JSON string representation of list_dictionaries
         """
-        if not list_dictionaries:
+        if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
-        return json.dumps(list_dictionaries)
+        else:
+            return json.dumps(list_dictionaries)
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """
+        Writes the JSON string representation of list_objs to a file
+        """
+        class_name = "{}.json".format(cls.__name__)
+        list_dict = []
+        if list_objs is None:
+            pass
+        else:
+            for objects in list_objs:
+                list_dict.append(objects.to_dictionary())
+        with open(class_name, "w", encoding="utf-8") as f:
+            f.write(cls.to_json_string(list_dict))
 
     @staticmethod
-    def from_json_string(json_string: str) -> list:
+    def from_json_string(json_string):
         """
-        Converts a JSON-formatted string to a list of dictionaries.
-
-        Parameters:
-        - json_string (str): JSON-formatted string
-        to be converted.
-
-        Returns:
-        list: List of dictionaries.
+        Returns the list of the JSON string representation json_string
         """
-        if not json_string:
+        if json_string is None or json_string == "":
             return []
-        return json.loads(json_string)
-
-    @classmethod
-    def save_to_file(cls, list_objs: list) -> None:
-        """
-        Saves a list of instances to a JSON file.
-
-        Parameters:
-        - list_objs (list): List of instances to be saved.
-
-        Returns:
-        None
-        """
-
-        if not list_objs:
-            list_objs = []
-        filename = cls.__name__ + ".json"
-
-        with open(filename, 'w') as file:
-            temp_list = [obj.to_dictionary() for obj in list_objs]
-            json_string = Base.to_json_string(temp_list)
-            file.write(json_string)
-
-    @classmethod
-    def create(cls, **dictionary) -> object:
-        """
-        Create a new obj from dictionary
-
-        Parameters:
-        - cls: class where this method call.
-        - dictionary (dict): the dictionary to be obj
-
-        Returns:
-        cls instance
-        """
-
-        classname = cls.__name__
-        dummy = {}
-        if classname == "Square":
-            dummy = cls(1)
         else:
+            return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """
+        Returns an instance with all attributes already set, creating
+        a 'dummy' instance beforehand
+        """
+        if cls.__name__ == "Rectangle":
             dummy = cls(1, 1)
+        if cls.__name__ == "Square":
+            dummy = cls(1)
         dummy.update(**dictionary)
         return dummy
 
     @classmethod
-    def load_from_file(cls) -> list:
+    def load_from_file(cls):
         """
-        Load objects from a JSON file and create instances of the class.
-
-        Returns:
-            list: A list of created instances.
+        Returns a list of instances
         """
-        filename = cls.__name__ + ".json"
-        list_objs = []
+        file_name = "{}.json".format(cls.__name__)
         try:
-            with open(filename, "r") as file:
-                file_content = file.read()
-                loaded_data = cls.from_json_string(file_content)
-                list_objs = [cls.create(**obj) for obj in loaded_data]
-                return list_objs
-        except FileNotFoundError:
+            with open(file_name, "r") as f:
+                json_string = f.read()
+        except Exception as e:
             return []
-
-    @staticmethod
-    def draw(list_rectangles, list_squares):
-        """
-        Draw squares and rectangles using turtle graphics.
-
-        Args:
-            list_rectangles (list): List of Rectangle objects.
-            list_squares (list): List of Square objects.
-        """
-        turtle.color("red")
-        turtle.bgcolor("cyan")
-        turtle.width(5)
-        turtle.speed(1)
-        turtle.penup()
-        turtle.goto(-300, 0)
-        turtle.pendown()
-        Base.draw_square(list_squares)
-        Base.draw_rectangle(list_rectangles)
-        turtle.done()
-
-    @staticmethod
-    def draw_rectangle(list_rectangles):
-        """
-        Draw rectangles using turtle graphics.
-
-        Args:
-            list_rectangles (list): List of Rectangle objects.
-        """
-        counter = 0
-        for obj in list_rectangles:
-            for i in range(4):
-                turtle.forward(obj.width if i % 2 == 0 else obj.height)
-                turtle.left(90)
-            counter += 1
-            if counter != len(list_rectangles):
-                turtle.penup()
-                turtle.forward(50 + obj.width)
-                turtle.pendown()
-
-    @staticmethod
-    def draw_square(list_squares):
-        """
-        Draw squares using turtle graphics.
-
-        Args:
-            list_squares (list): List of Square objects.
-        """
-        for obj in list_squares:
-            for _ in range(4):
-                turtle.forward(obj.size)
-                turtle.left(90)
-            turtle.penup()
-            turtle.forward(50 + obj.size)
-            turtle.pendown()
+        list_inst = []
+        inst_dict_list = cls.from_json_string(json_string)
+        for i in inst_dict_list:
+            list_inst.append(cls.create(**i))
+        return list_inst

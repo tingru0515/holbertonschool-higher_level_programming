@@ -1,125 +1,69 @@
 #!/usr/bin/python3
-
-""" This module provides square class.
 """
-from .rectangle import Rectangle
+Module - square.py
+"""
+from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
     """
-    A class representing a square.
-
-    Attributes:
-        size (int): The side length of the square.
-        x (int): X-coordinate of the square's position.
-        y (int): Y-coordinate of the square's position.
-        id: An optional identifier for the square.
+    Class Square inherits from Rectangle
     """
-
-    ATTR_NAMES = {
-        "ID": "id",
-        "SIZE": "size",
-        "X": 'x',
-        "Y": 'y'
-    }
-
-    def __init__(self, size: int, x: int = 0, y: int = 0, id: int = None):
+    def __init__(self, size, x=0, y=0, id=None):
         """
-        Initializes an instance of the Square class.
-
-        Parameters:
-        - size (int): The side length of the square.
-        - x (int): X-coordinate of the square's position (default is 0).
-        - y (int): Y-coordinate of the square's position (default is 0).
-        - id (int): An optional identifier for the square (default is None).
-
-        Returns:
-        None
+        class Square constructor
         """
         super().__init__(size, size, x, y, id)
-
-    def __str__(self) -> str:
-        """
-        Returns a string representation of the square.
-
-        Returns:
-        str: String representation of the square.
-        """
-        return "[{}] ({}) {}/{} - {}".format(
-            __class__.__name__, self.id, self.x,
-            self.y, self.height)
 
     @property
     def size(self):
         """
-        Getter method for the size attribute.
-
-        Returns:
-        int: The side length of the square.
+        Size inherits from Rectangle
         """
         return self.width
 
     @size.setter
     def size(self, value):
-        """
-        Setter method for the size attribute.
-
-        Parameters:
-        - value: New value for the size attribute.
-
-        Returns:
-        None
-        """
         self.width = value
         self.height = value
 
-    def update(self, *args, **kwargs) -> None:
+    def __str__(self):
         """
-        Updates attributes of the square based on positional
-        and keyword arguments.
-
-        Parameters:
-        - *args: Positional arguments representing ID, size, x, and y.
-        - **kwargs: Keyword arguments representing attributes to be updated.
-
-        Returns:
-        None
+        Returns a string representation of the square
+        object that can be used to create a normal square
         """
-        ATTR_NAMES = {
-            "ID": "id",
-            "SIZE": "size",
-            "X": 'x',
-            "Y": 'y'
-        }
-        if len(args):
-            for i in range(len(args)):
-                if i == 0:
-                    self.id = args[i]
-                elif i == 1:
-                    self.size = args[i]
-                elif i == 2:
-                    self.x = args[i]
-                elif i == 3:
-                    self.y = args[i]
-        elif len(kwargs.keys()):
-            for key, val in kwargs.items():
-                if key == ATTR_NAMES["ID"]:
-                    self.id = val
-                elif key == ATTR_NAMES["X"]:
-                    self.x = val
-                elif key == ATTR_NAMES["Y"]:
-                    self.y = val
-                elif key == ATTR_NAMES["SIZE"]:
-                    self.size = val
+        return ("[Square] ({}) {}/{} - {}".
+                format(self.id, self.x, self.y, self.width))
+
+    def update(self, *args, **kwargs):
+        """
+        Assign a key/value arguments to attributes
+        """
+
+        for i, value in enumerate(args):
+            if i == 0:
+                self.id = value
+            elif i == 1:
+                self.size = value
+            elif i == 2:
+                self.x = value
+            elif i == 3:
+                self.y = value
+
+        for key, value in kwargs.items():
+            # key in dictionary is a string
+            if key == 'id':
+                self.id = value
+            if key == 'size':
+                self.size = value
+            if key == 'x':
+                self.x = value
+            if key == 'y':
+                self.y = value
 
     def to_dictionary(self):
         """
-        Returns a dictionary representation of the square.
-
-        Returns:
-        dict: Dictionary representation of the square.
+        Returns a dictionary representation of a Square
         """
-        temp_dict = {}
-        for i in Square.ATTR_NAMES.values():
-            temp_dict[i] = getattr(self, i)
-        return temp_dict
+        # make dictionary from instances
+        return {'id': self.id, 'x': self.x, 'y': self.y, 'size': self.size}
