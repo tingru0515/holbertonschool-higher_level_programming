@@ -1,2 +1,5 @@
--- Write a script that creates the database hbtn_0c_0 in your MySQL server.
-CREATE DATABASE hbtn_0c_0;
+--  lists all records of the table second_table
+SELECT score, name
+FROM second_table
+WHERE name IS NOT NULL
+ORDER BY score DESC;
